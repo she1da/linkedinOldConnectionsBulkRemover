@@ -49,15 +49,32 @@ loop. It resumes on the next load. Closing the tab is a valid stop button.
 
 ## Install
 
-No build step.
+No build step, no coding needed — this takes about two minutes.
 
-1. Clone or download this repo.
-2. Chrome → `chrome://extensions` → enable **Developer mode**.
-3. **Load unpacked** → select this folder.
-4. Open any `linkedin.com` page. The panel appears top-right.
+1. **Get the code.** On this repo's GitHub page, click the green **Code**
+   button → **Download ZIP**. Save it anywhere, then unzip it (double-click
+   the file on Mac; on Windows, right-click it → **Extract All**).
+2. **Open Chrome's extensions page.** Type `chrome://extensions` into the
+   address bar and press Enter.
+3. **Turn on Developer mode.** It's a toggle in the top-right corner of that
+   page. Chrome will start showing a small "Developer mode extensions are
+   running" banner from now on — that's normal for any unpacked extension,
+   not a warning specific to this one, and it goes away if you turn Developer
+   mode back off later.
+4. **Click Load unpacked**, then select the folder you unzipped in step 1
+   (the one that directly contains `manifest.json`).
+5. **Open any `linkedin.com` page.** The panel appears top-right.
 
-Add an `icons/` folder and an `icons` key in `manifest.json` if you want a
-toolbar icon; nothing here depends on it.
+To update later: download the ZIP again, unzip it over the old folder (or
+delete the old one first), then go to `chrome://extensions` and click the
+reload icon (↻) on this extension's card — no need to remove and re-add it.
+
+If a Chrome Web Store listing exists for this extension, that's the easier
+path — no Developer mode, no ZIP. Check the top of this README or the
+repo's About section for a store link; if there isn't one yet, the steps
+above are the only way to run it, and always will be if the listing is ever
+rejected or removed. (Prep work for a possible listing lives in
+[`STORE_LISTING.md`](STORE_LISTING.md), for whoever maintains this repo.)
 
 ## Use
 
@@ -112,6 +129,29 @@ identical timing break things. They do not make any of this compliant.
 > هنگام قطع ارتباط به کسی اطلاع‌رسانی نمی‌شود. این ابزار برای کسانی منتشر
 > شده که این معامله را می‌پذیرند. حالت آزمایشی (Dry run) به‌طور پیش‌فرض
 > روشن است؛ تا وقتی به خروجی آن اعتماد نکرده‌اید آن را خاموش نکنید.
+
+### نصب
+
+نیازی به برنامه‌نویسی یا نصب چیز اضافه‌ای نیست — کل کار حدود دو دقیقه طول
+می‌کشد.
+
+1. **کد را دانلود کنید.** در صفحه‌ی گیت‌هاب این پروژه، روی دکمه‌ی سبز
+   **Code** بزنید ← **Download ZIP**. فایل را هرجا خواستید ذخیره کنید و از
+   حالت فشرده خارجش کنید (در ویندوز: کلیک راست روی فایل ← Extract All).
+2. **صفحه‌ی افزونه‌های کروم را باز کنید.** در نوار آدرس تایپ کنید
+   `chrome://extensions` و اینتر بزنید.
+3. **حالت Developer mode را روشن کنید.** یک کلید در گوشه‌ی بالا-راست همان
+   صفحه است. از این به بعد کروم یک نوار کوچک درباره‌ی «Developer mode
+   extensions» نشان می‌دهد — این طبیعی است و مخصوص این افزونه نیست؛ هر
+   افزونه‌ی نصب‌شده به همین روش همین پیام را نشان می‌دهد.
+4. روی **Load unpacked** بزنید و پوشه‌ای را انتخاب کنید که از حالت فشرده
+   خارج کردید (همان پوشه‌ای که مستقیماً فایل `manifest.json` داخلش است).
+5. **یک صفحه از linkedin.com باز کنید.** پنل بالا-سمت‌راست ظاهر می‌شود.
+
+برای به‌روزرسانی بعداً: دوباره ZIP را دانلود کنید، روی پوشه‌ی قبلی
+جایگزینش کنید (یا اول پوشه‌ی قبلی را پاک کنید)، بعد در
+`chrome://extensions` روی آیکون رفرش (↻) روی کارت این افزونه بزنید — نیازی
+به حذف و نصب دوباره نیست.
 
 ### گرفتن Connections.csv
 
@@ -180,11 +220,14 @@ point of the design.
 
 ```
 manifest.json
+icons/           toolbar/store icons (16, 48, 128px)
 src/core.js      state, label dictionary, element matching, waitFor
 src/csv.js       Connections.csv parser + filter engine
 src/remover.js   the resumable one-removal-per-load state machine
 src/panel.js     shadow-DOM panel (UI can't collide with LinkedIn's CSS)
 src/main.js      wiring
+PRIVACY.md       privacy policy (no data collected — required for a Web Store listing)
+STORE_LISTING.md copy-paste reference for publishing to the Chrome Web Store
 ```
 
 ## Ideas worth building
