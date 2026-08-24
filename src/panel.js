@@ -189,7 +189,7 @@ LCC_P.render = ({ root, $ }, state, loadedCount) => {
     ? `${loadedCount} connections loaded.`
     : 'No file loaded.';
 
-  $('start').disabled = state.status === 'running' || !state.queue.length;
+  $('start').disabled = state.status === 'running' || !loadedCount;
   $('pause').disabled = state.status !== 'running';
 
   const tape = $('tape');
