@@ -28,9 +28,10 @@ two things, and both are why they break:
 
 Two changes fix both:
 
-**Filter offline, act online.** LinkedIn's own data export (Settings → Data
-Privacy → Get a copy of your data → Connections) gives you a CSV with `First
-Name, Last Name, URL, Email Address, Company, Position, Connected On`. That
+**Filter offline, act online.** LinkedIn's own data export (see
+[Getting your Connections.csv](#getting-your-connectionscsv) below) gives you
+a CSV with `First Name, Last Name, URL, Email Address, Company, Position,
+Connected On`. That
 `Connected On` column is the thing the LinkedIn UI never lets you filter by — so
 "everyone I connected with before 2019 who has no company listed" becomes a
 one-line filter instead of an afternoon of scrolling. No scraping, and the
@@ -60,17 +61,40 @@ toolbar icon; nothing here depends on it.
 
 ## Use
 
-1. Request your data export from LinkedIn and wait for the email (minutes to
-   ~24h). Unzip it and find `Connections.csv`.
-2. Load that file into the panel. It's parsed in memory and never sent anywhere.
-3. Set filters. Put anyone you must not lose into **Never remove** — it's checked
+### Getting your Connections.csv
+
+1. Go to
+   [linkedin.com/mypreferences/d/download-my-data](https://www.linkedin.com/mypreferences/d/download-my-data)
+   (Settings → Data privacy → Get a copy of your data).
+2. Take the **top radio button** — "Download larger data archive, including
+   connections, verifications, contacts, account history, and information we
+   infer about you based on your profile and activity." Its own label tells
+   you connections are in there. The other option, "Want something in
+   particular? Select the data files you're most interested in," doesn't even
+   list a Connections checkbox — it's not the faster path, it's a dead end.
+3. Click **Request archive**, enter your password to confirm.
+4. Expect up to 24 hours, not the ~10 minutes some guides promise. LinkedIn
+   often sends two separate emails for the larger archive — it arrives in
+   batches, and connections may be in the second one. Watch for a subject
+   line along the lines of your full data archive being ready.
+5. Download the archive from the email, unzip it, and find `Connections.csv`
+   inside.
+
+(If you spot an "Export contacts" link under My Network → Connections →
+Manage synced and imported contacts, it just redirects back to this same
+page now — not a shortcut.)
+
+### Run it
+
+1. Load `Connections.csv` into the panel. It's parsed in memory and never sent anywhere.
+2. Set filters. Put anyone you must not lose into **Never remove** — it's checked
    against name, company, position, and profile slug, and it wins over every
    other filter.
-4. **Preview matches.** Read the count and the sample. Do this properly.
-5. **Start** with dry run on. It walks each profile and opens the menu without
+3. **Preview matches.** Read the count and the sample. Do this properly.
+4. **Start** with dry run on. It walks each profile and opens the menu without
    confirming, so you can see the pacing and catch selector breakage safely.
-6. Turn dry run off and start again if the record looks right.
-7. Download the record. It's your only account of what happened — keep it, it's
+5. Turn dry run off and start again if the record looks right.
+6. Download the record. It's your only account of what happened — keep it, it's
    also the list you'd need to re-invite anyone removed by mistake.
 
 Defaults: 25 per run, 100/day cap, 4–9s between actions. The delays exist
@@ -89,22 +113,46 @@ identical timing break things. They do not make any of this compliant.
 > شده که این معامله را می‌پذیرند. حالت آزمایشی (Dry run) به‌طور پیش‌فرض
 > روشن است؛ تا وقتی به خروجی آن اعتماد نکرده‌اید آن را خاموش نکنید.
 
-1. از لینکدین درخواست خروجی داده (data export) بدهید و منتظر ایمیل بمانید
-   (از چند دقیقه تا حدود ۲۴ ساعت طول می‌کشد). فایل را از حالت فشرده خارج
-   کنید و فایل `Connections.csv` را پیدا کنید.
-2. آن فایل را در پنل بارگذاری کنید. فایل فقط در حافظه مرورگر پردازش می‌شود
-   و به هیچ جایی ارسال نمی‌شود.
-3. فیلترها را تنظیم کنید. هر کسی که نباید از دست بدهید را در قسمت
+### گرفتن Connections.csv
+
+1. به آدرس
+   [linkedin.com/mypreferences/d/download-my-data](https://www.linkedin.com/mypreferences/d/download-my-data)
+   بروید (مسیر: Settings ← Data privacy ← Get a copy of your data).
+2. **گزینه‌ی رادیویی بالا** را انتخاب کنید — «Download larger data archive,
+   including connections, verifications, contacts, account history, and
+   information we infer about you based on your profile and activity». خودِ
+   عنوان این گزینه می‌گوید که ارتباط‌ها (connections) در آن هست. گزینه‌ی
+   دیگر، «Want something in particular? Select the data files you're most
+   interested in»، اصلاً چک‌باکسی برای Connections ندارد — این گزینه میان‌بر
+   نیست، بن‌بست است.
+3. روی **Request archive** بزنید و رمز عبورتان را برای تأیید وارد کنید.
+4. منتظر بمانید — تا ۲۴ ساعت طول می‌کشد، نه ده دقیقه‌ای که بعضی راهنماها
+   می‌گویند. لینکدین معمولاً برای آرشیو بزرگ‌تر دو ایمیل جداگانه می‌فرستد؛
+   چون آرشیو به‌صورت دسته‌ای آماده می‌شود و ممکن است بخش connections در
+   ایمیل دوم باشد. دنبال موضوعی شبیه به «your full data archive being
+   ready» بگردید.
+5. آرشیو را از ایمیل دانلود کنید، از حالت فشرده خارجش کنید و فایل
+   `Connections.csv` را پیدا کنید.
+
+(اگر لینک «Export contacts» را زیر My Network ← Connections ← Manage synced
+and imported contacts دیدید، بدانید که الان فقط به همین صفحه بازتان
+می‌گرداند — میان‌بر نیست.)
+
+### اجرای آن
+
+1. فایل `Connections.csv` را در پنل بارگذاری کنید. فایل فقط در حافظه مرورگر
+   پردازش می‌شود و به هیچ جایی ارسال نمی‌شود.
+2. فیلترها را تنظیم کنید. هر کسی که نباید از دست بدهید را در قسمت
    **Never remove** وارد کنید — این فیلد در برابر نام، شرکت، سمت شغلی و
    نشانی پروفایل بررسی می‌شود و بر هر فیلتر دیگری اولویت دارد.
-4. روی **Preview matches** بزنید. تعداد و نمونه‌ها را با دقت بخوانید. این
+3. روی **Preview matches** بزنید. تعداد و نمونه‌ها را با دقت بخوانید. این
    مرحله را جدی بگیرید.
-5. با حالت آزمایشی (dry run) روشن، دکمه **Start** را بزنید. افزونه هر
+4. با حالت آزمایشی (dry run) روشن، دکمه **Start** را بزنید. افزونه هر
    پروفایل را باز می‌کند و منو را بدون تأیید نهایی نشان می‌دهد تا بتوانید
    سرعت اجرا را ببینید و مشکلات احتمالی را بدون خطر شناسایی کنید.
-6. اگر گزارش درست به نظر می‌رسید، حالت آزمایشی را خاموش کنید و دوباره
+5. اگر گزارش درست به نظر می‌رسید، حالت آزمایشی را خاموش کنید و دوباره
    Start را بزنید.
-7. گزارش نهایی را دانلود کنید. این تنها سند شماست از آنچه اتفاق افتاده —
+6. گزارش نهایی را دانلود کنید. این تنها سند شماست از آنچه اتفاق افتاده —
    نگهش دارید؛ همان فهرستی است که برای دعوت دوباره‌ی افرادی که به اشتباه
    حذف شده‌اند لازم دارید.
 
@@ -162,4 +210,7 @@ is slower and better.
 
 ## License
 
-MIT. Your account, your call, your responsibility.
+MIT. Your account, your call, your responsibility. Anyone can use, modify, or
+redistribute this — free of charge, no permission needed.
+
+Built with [Claude](https://claude.com/claude-code).
